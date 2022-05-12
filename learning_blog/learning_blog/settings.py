@@ -16,8 +16,8 @@ import bootstrap3
 
 # load all key valu pairs from .env only for your local use
 # not needed in PRODUCTION !!
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
