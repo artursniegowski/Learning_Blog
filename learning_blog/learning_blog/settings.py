@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 import bootstrap3
+import whitenoise
 
 # load all key valu pairs from .env only for your local use
 # not needed in PRODUCTION !!
