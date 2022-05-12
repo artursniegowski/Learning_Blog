@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 
 
-app_name = 'learning_blog_app'
+app_name = 'learning_blog.learning_blog_app'
 
 urlpatterns = [
     # Home page
