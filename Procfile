@@ -1,0 +1,1 @@
+web: gunicorn learning_blog.learning_blog.wsgi
