@@ -17,9 +17,12 @@ import whitenoise
 
 # load all key valu pairs from .env only for your local use
 # not needed in PRODUCTION !!
-#from dotenv import load_dotenv
-#load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
+PRODUCTION = (os.environ.get('PRODUCTION_VALUE') == 'True')
 
+if not PRODUCTION:
+    ALLOWED_HOSTS = []
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,9 +35,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-
-#ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -154,20 +154,19 @@ BOOTSTRAP3 = {
 }
 
 # Heroku settings
-#if os.getcwd() == '/app':
-import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
-    }
-    
+if PRODUCTION :
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+        }
+
+    # Allow all host headers.
+    ALLOWED_HOSTS = ['learning-blog-zero-to-hero.herokuapp.com']    
+
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Allow all host headers.
-ALLOWED_HOSTS = ['learning-blog-zero-to-hero.herokuapp.com']
-
 # Static asset configuration
-
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = 'static/'
 
