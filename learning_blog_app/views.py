@@ -50,7 +50,7 @@ def new_topic(request):
 @login_required    
 def new_entry(request, topic_id : int):
     """Add a new entry for a particular topic"""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic,id=topic_id)
     
     # Making sure the topic belongs to the current user
     check_topic_owner(topic,request)
@@ -73,7 +73,7 @@ def new_entry(request, topic_id : int):
 @login_required
 def edit_entry(request, entry_id : int):
     """Edit an existing entry"""
-    entry = Entry.objects.get(id=entry_id)
+    entry = get_object_or_404(Entry,id=entry_id)
     topic = entry.topic
 
     # Making sure the entry belongs to the current user
