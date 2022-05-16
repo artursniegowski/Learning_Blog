@@ -13,16 +13,12 @@
     
     {% for entry in entries %}
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3>
-                    {{ entry.date_added|date:'M d, Y H:i'}}
-                    <small>
-                            <a href="{% url 'learning_blog_app:edit_entry' entry.id  %}">edit entry</a>                    
-                    </small>
-                </h3>
-            </div>
             <div class="panel-body">
                 {{ entry.text|linebreaks }}
+            </div>
+            <div class="panel-footer">   
+                {{ user.username }}, {{ entry.date_added|date:'M d, Y H:i'}}
+                <div style="float:right"><a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:edit_entry' entry.id  %}" role="button">edit</a></div>
             </div>
         </div><!-- panel -->
     {% empty %}

@@ -21,6 +21,7 @@ from dotenv import load_dotenv
 load_dotenv()
 PRODUCTION = (os.environ.get('PRODUCTION_VALUE') == 'True')
 
+# Settings to run as local host
 if not PRODUCTION:
     ALLOWED_HOSTS = []
 
@@ -154,13 +155,14 @@ BOOTSTRAP3 = {
 }
 
 # Heroku settings
+# settings fro production / live on heroku
 if PRODUCTION :
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
         }
 
-    # Allow all host headers.
+    # Allowed host headers.
     ALLOWED_HOSTS = ['learning-blog-zero-to-hero.herokuapp.com']    
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().

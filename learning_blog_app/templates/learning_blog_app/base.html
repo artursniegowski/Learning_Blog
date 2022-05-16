@@ -7,27 +7,32 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <title>Learning Blog</title>
 
+        <!-- Bootstrap django -->
         {% bootstrap_css %}
         {% bootstrap_javascript %}
 
     </head>
 
+    <!-- When using a fixed-top navbar, you have to add manual padding.-->
+    body {padding-top: 70px;}
     <body>
         <!-- Static navbar -->
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
-
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" 
-                      data-toggle="collapse" data-target="#navbar" 
-                      aria-expanded="false" aria-controls="navbar"></button>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href=
                       "{% url 'learning_blog_app:index' %}">{% bootstrap_icon "star" %} Learning Blog {% bootstrap_icon "star" %}</a>
                 </div>
-                
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{% url 'learning_blog_app:topics' %}">Topics</a></li>
@@ -46,7 +51,6 @@
         </nav>
 
         <div class="container">
-
             <div class="page-header">
                 {% block header %}{% endblock header %}
             </div>
