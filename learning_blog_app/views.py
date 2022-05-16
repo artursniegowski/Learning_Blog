@@ -92,6 +92,20 @@ def edit_entry(request, entry_id : int):
     context = {'entry':entry, 'topic':topic, 'form':form}
     return render(request,'learning_blog_app/edit_entry.html',context)
 
+
+@login_required
+def delete_entry(request, entry_id : int):
+    """Delete an existing entry"""
+    entry = get_object_or_404(Entry,id=entry_id)
+    topic = entry.topic
+
+    # Making sure the entry belongs to the current user
+    check_topic_owner(topic,request)
+
+    entry.delete()
+    
+    return HttpResponseRedirect(reverse('learning_blog_app:topic',args=[topic.id]))
+
 def check_topic_owner(topic : Topic.objects,request) -> None:
     """checking if the topic owner is the current usser"""
     """raise an exception if it dosent match"""

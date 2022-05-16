@@ -19,6 +19,7 @@
             <div class="panel-footer">   
                 {{ user.username }}, {{ entry.date_added|date:'M d, Y H:i'}}
                 <div style="float:right"><a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:edit_entry' entry.id  %}" role="button">edit</a></div>
+                <div style="float:right"><a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:delete_entry' entry.id  %}" role="button">delete</a></div>
             </div>
         </div><!-- panel -->
     {% empty %}
