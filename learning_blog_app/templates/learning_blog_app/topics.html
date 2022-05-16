@@ -1,23 +1,26 @@
 {% extends "learning_blog_app/base.html" %}
 
 {% block header %}
-    <h1>Topics</h1>
+    <h1>
+        Topics
+        <div style="float:right"><a class="btn btn-primary btn-lg" href="{% url 'learning_blog_app:new_topic' %}" role="button">Add a new topic</a></div>
+    </h1>
 {% endblock header %}
 
 {% block content_main %}
 
-    <ul>
-        {% for topic in topics %}
-            <li>
-                <h3>
-                    <a href="{% url 'learning_blog_app:topic' topic.id %}">{{ topic }}</a>
-                </h3>
-            </li>
-        {% empty %}
-            <li>No topics have been added yet.</li>
-        {% endfor %}
-    </ul>
 
-    <h3><a href="{% url 'learning_blog_app:new_topic' %}">Add a new topic:</a></h3>
+<ul class="list-group">
+    {% for topic in topics %}
+        <li class="list-group-item">
+            <a href="{% url 'learning_blog_app:topic' topic.id %}"><b>{{ topic }}</b></a>
+            <a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:topic' topic.id %}" role="button">View &raquo;</a>
+            <a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:delete_topic' topic.id  %}" role="button">delete</a>
+            <span class="badge">XX</span>
+        </li>
+    {% empty %}
+        Please add topics.
+    {% endfor %}
+</ul>
 
 {% endblock content_main %}

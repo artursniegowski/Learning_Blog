@@ -29,6 +29,19 @@ def topic(request, topic_id : int):
     context = {'topic':topic, 'entries':entries}
     return render(request,'learning_blog_app/topic.html',context)
 
+
+@login_required    
+def delete_topic(request, topic_id : int):
+    """Delete a particular topic"""
+    topic = get_object_or_404(Topic,id=topic_id)
+    
+    # Making sure the topic belongs to the current user
+    check_topic_owner(topic,request)
+    
+    topic.delete()
+            
+    return HttpResponseRedirect(reverse('learning_blog_app:topics'))
+
 @login_required
 def new_topic(request):
     """Add new topic"""
@@ -46,6 +59,7 @@ def new_topic(request):
 
     context = {'form': form}
     return render(request,'learning_blog_app/new_topic.html',context)
+
 
 @login_required    
 def new_entry(request, topic_id : int):

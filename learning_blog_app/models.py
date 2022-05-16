@@ -23,7 +23,7 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
 
     def __str__(self) -> str:
-        """Resturning a string representation of the model"""
+        """Reshaping a string representation of the model"""
         add_ellipsis = ''
         if len(self.text) > 50 :
             add_ellipsis = '...'

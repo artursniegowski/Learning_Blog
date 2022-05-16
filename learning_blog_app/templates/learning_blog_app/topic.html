@@ -1,16 +1,14 @@
 {% extends "learning_blog_app/base.html" %}
 
 {% block header %}
-    <h2>{{ topic }}</h2>
+    <h2>
+        {{ topic }}
+        <div style="float:right"><a class="btn btn-primary" href="{% url 'learning_blog_app:new_entry' topic.id %}" role="button">add new entry</a></div>
+    </h2>
 {% endblock header %}
 
 {% block content_main %}
 
-    <p>Entries:</p>
-    <p>
-        <a href="{% url 'learning_blog_app:new_entry' topic.id %}">add new entry</a>
-    </p>
-    
     {% for entry in entries %}
         <div class="panel panel-default">
             <div class="panel-body">
@@ -26,5 +24,4 @@
         There are no entries for this topic yet.
     {% endfor %}
     
-
 {% endblock content_main %}
