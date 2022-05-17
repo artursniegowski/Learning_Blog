@@ -11,12 +11,12 @@
 
 
 <ul class="list-group">
-    {% for topic in topics %}
+    {% for topic, num in topics_num_list %}
         <li class="list-group-item">
             <a href="{% url 'learning_blog_app:topic' topic.id %}"><b>{{ topic }}</b></a>
             <a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:topic' topic.id %}" role="button">View &raquo;</a>
             <a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:delete_topic' topic.id  %}" role="button">delete</a>
-            <span class="badge">XX</span>
+            <span class="badge">{{ num }}</span>
         </li>
     {% empty %}
         Please add topics.

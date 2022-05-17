@@ -15,7 +15,15 @@ def index(request):
 def topics(request):
     """Show all topics"""
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    context = {'topics': topics}
+
+    # checking how many entries does each Topic have
+    entries_num = []
+    for topic in topics:
+        entries_num.append(len(Entry.objects.filter(topic=topic)))
+        
+    topics_num_list = zip(topics,entries_num)
+
+    context = {'topics_num_list': topics_num_list}
     return render(request,'learning_blog_app/topics.html',context)
 
 @login_required
