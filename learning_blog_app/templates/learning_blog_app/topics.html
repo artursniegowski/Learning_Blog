@@ -15,7 +15,18 @@
         <li class="list-group-item">
             <a href="{% url 'learning_blog_app:topic' topic.id %}"><b>{{ topic }}</b></a>
             <a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:topic' topic.id %}" role="button">View &raquo;</a>
-            <a class="btn btn-default btn-xs" href="{% url 'learning_blog_app:delete_topic' topic.id  %}" role="button">delete</a>
+            
+            <script>
+                function clicked(e)
+                {
+                    if(!confirm('Are you sure?'))
+                    {
+                        e.preventDefault();
+                    }
+                }
+            </script>
+            
+            <a class="btn btn-default btn-xs" onclick="clicked(event);" href="{% url 'learning_blog_app:delete_topic' topic.id  %}" role="button">delete</a>
             <span class="badge">{{ num }}</span>
         </li>
     {% empty %}
